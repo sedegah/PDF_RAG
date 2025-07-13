@@ -2,7 +2,6 @@ package com.pdfrag;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
 
 public class CsvExporter {
 
@@ -10,11 +9,14 @@ public class CsvExporter {
         try (FileWriter writer = new FileWriter(outputPath)) {
             writer.write("Sentence,Status\n");
 
-            for (String line : text.split("[.\\n]")) {
-                String trimmed = line.trim().replaceAll(",", " ");
-                if (trimmed.length() < 5) continue;
+            // Split by period or newline, clean and classify
+            for (String line : text.split("[\\.\\n]")) {
+                String trimmed = line.trim().replaceAll("[,\"]", " ");
+                if (trimmed.length() < 5) continue; // skip very short lines
 
                 String status = RagClassifier.classify(trimmed);
+
+                // Proper CSV quoting
                 writer.write("\"" + trimmed + "\"," + status + "\n");
             }
         }
