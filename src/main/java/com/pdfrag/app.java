@@ -14,11 +14,14 @@ public class App {
 
         String annotatedPath = "annotated_output.pdf";
         String reportPath = "rag_summary_report.pdf";
+        String csvPath = "rag_output.csv";
 
         PdfAnnotator.annotate(pdfPath, annotatedPath);
         ReportGenerator.generate(ragStats, reportPath);
+        CsvExporter.export(text, csvPath);  // ✅ NEW: Export sentence-by-sentence to CSV
 
         System.out.println("✅ Annotated PDF: " + annotatedPath);
         System.out.println("✅ RAG Report: " + reportPath);
+        System.out.println("✅ CSV Exported: " + csvPath);
     }
 }
