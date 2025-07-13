@@ -16,6 +16,6 @@ A Java tool that performs RAG (Red/Amber/Green) analysis on PDF documents. It:
 ## Installation & Build
 
 ```bash
-git clone https://github.com/your-username/pdf-rag-java.git
+git clone https://github.com/sedegah/pdf-rag-java.git
 cd pdf-rag-java
 mvn package
